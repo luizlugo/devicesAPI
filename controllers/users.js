@@ -1,5 +1,5 @@
 //user's model
-var User = require('./models/user');
+var User = require('../models/user');
 
 var usersController = {
 	add : function(req, res){
