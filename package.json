@@ -1,0 +1,10 @@
+{
+	"name": "Devices-API",
+	"description": "API to handle the devices of propelics",
+	"main": "core.js",
+	"dependencies": {
+		"express": "4.x",
+		"mongoose": "3.x",
+		"body-parser": "1.x"
+	}
+}
