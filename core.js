@@ -9,7 +9,8 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	bodyParser = require('body-parser'),
 	port = process.env.PORT || 8080,
-	device = require('./controllers/devices');
+	device = require('./controllers/devices'),
+	user = require('./controllers/users');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -26,11 +27,22 @@ mongoose.connect('mongodb://@localhost:27017/propelics');
 var router = express.Router();  //get an instance of the express router
 
 // Middleware to use for all requests
+//=================DEVICES=========================
 router.route('/devices')
 	.post(device.add)
 	.get(device.getAll);
 
 router.route('/devices/:id')
+	.get(device.findById)
+	.put(device.update)
+	.delete(device.delete);
+
+//=================USERS=========================
+router.route('/users')
+	.post(device.add)
+	.get(device.getAll);
+
+router.route('/users/:id')
 	.get(device.findById)
 	.put(device.update)
 	.delete(device.delete);

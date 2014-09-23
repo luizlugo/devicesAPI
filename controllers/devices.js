@@ -1,7 +1,7 @@
 //device model
 var Device = require('../models/device');
 
-var deviceRoute = {
+var devicesController = {
 	add : function(req, res){
 			var device = new Device();
 			
@@ -66,4 +66,4 @@ var deviceRoute = {
 
 };
 
-module.exports = deviceRoute;
+module.exports = devicesController;
