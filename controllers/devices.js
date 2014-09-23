@@ -4,7 +4,12 @@ var Device = require('../models/device');
 var deviceRoute = {
 	add : function(req, res){
 			var device = new Device();
+			
+			//adding atrributes
 			device.name = req.body.name;
+			device.description = req.body.description;
+			device.identifinder = req.body.identifinder;
+
 			device.save(function(err){
 				if (err){
 					res.send(err);
@@ -33,7 +38,12 @@ var deviceRoute = {
 					if (err){
 						res.send(err);
 					}
+					
+					//adding attributes
 					device.name = req.body.name;
+					device.description = req.body.description;
+					device.identifinder = req.body.identifinder;
+
 					device.save(function(err){
 						if (err){
 							res.send(err);
