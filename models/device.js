@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 
 var deviceSchema = new Schema({
 	name: String,
-	description: String
+	description: String,
+	identifinder: String
 });
 
 module.exports = mongoose.model('Device', deviceSchema);
