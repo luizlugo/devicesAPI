@@ -1,5 +1,6 @@
 //device model
 var Device = require('../models/device');
+var borrowings = require('../controllers/borrowings');
 
 var devicesController = {
 	add : function(req, res){
@@ -63,7 +64,6 @@ var devicesController = {
 					res.json({message: 'Device successfully deleted'})
 				});
 	}
-
 };
 
 module.exports = devicesController;

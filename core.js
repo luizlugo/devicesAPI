@@ -10,7 +10,9 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	port = process.env.PORT || 8080,
 	device = require('./controllers/devices'),
-	user = require('./controllers/users');
+	user = require('./controllers/users'),
+	accessory = require('./controllers/accessories'),
+	borrowing = require('./controllers/borrowings');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -39,13 +41,30 @@ router.route('/devices/:id')
 
 //=================USERS=========================
 router.route('/users')
-	.post(device.add)
-	.get(device.getAll);
+	.post(user.add)
+	.get(user.getAll);
 
 router.route('/users/:id')
-	.get(device.findById)
-	.put(device.update)
-	.delete(device.delete);
+	.get(user.findById)
+	.put(user.update)
+	.delete(user.delete);
+
+//=================ACCESSORIES===================
+router.route('/accessories')
+	.post(accessory.add)
+	.get(accessory.getAll);
+
+router.route('/accessories/:id')
+	.get(accessory.findById)
+	.put(accessory.update)
+	.delete(accessory.delete);
+
+//=================BORROWINGS===================
+//TODO: add borrowings routes
+router.route('/borrowings')
+	.post(borrowing.start)
+	.get(borrowing.getAll);
+
 
 //Register our routes
 app.use('/API', router);

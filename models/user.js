@@ -8,7 +8,8 @@ var userSchema = new Schema({
 		last  : String
 	},
 	email : String,
-	phone : String 
+	phone : String,
+	status: {type: Number, default: 0}
 });
 
 module.exports = mongoose.model('User', userSchema);
