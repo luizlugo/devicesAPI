@@ -22,7 +22,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //configure the database locally 
-mongoose.connect('mongodb://propelics:propelicss@linus.mongohq.com:10002/propelics');
+
+//production
+//mongoose.connect('mongodb://propelics:propelicss@linus.mongohq.com:10002/propelics');
+//dev
+mongoose.connect('mongodb://@localhost:27017/propelics');
 
 //ROUTES FOR OUR API
 //==========================================================
