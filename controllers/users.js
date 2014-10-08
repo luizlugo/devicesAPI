@@ -6,8 +6,8 @@ var usersController = {
 			var user = new User();
 			
 			//adding atrributes
-			user.name.first = req.body.name.first;
-			user.name.last = req.body.name.last;
+			user.first = req.body.first;
+			user.last  = req.body.last;
 			user.email = req.body.email;
 			user.phone = req.body.phone;
 
@@ -40,9 +40,9 @@ var usersController = {
 						res.send(err);
 					}
 					
-					//adding attributes
-					user.name.first = req.body.name.first;
-					user.name.last = req.body.name.last;
+					//adding atrributes
+					user.first = req.body.first;
+					user.last  = req.body.last;
 					user.email = req.body.email;
 					user.phone = req.body.phone;
 

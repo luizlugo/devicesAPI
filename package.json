@@ -1,7 +1,11 @@
 {
 	"name": "Devices-API",
 	"description": "API to handle the devices of propelics",
-	"main": "core.js",
+	"version": "0.1.0",
+	"scripts": {
+		"start": "node core.js"
+	},
+	"framework": "none",
 	"dependencies": {
 		"express": "4.x",
 		"mongoose": "3.x",
