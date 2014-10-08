@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //configure the database locally 
-mongoose.connect('mongodb://@localhost:27017/propelics');
+mongoose.connect('mongodb://propelics:propelicss@linus.mongohq.com:10002/propelics');
 
 //ROUTES FOR OUR API
 //==========================================================
@@ -60,11 +60,13 @@ router.route('/accessories/:id')
 	.delete(accessory.delete);
 
 //=================BORROWINGS===================
-//TODO: add borrowings routes
 router.route('/borrowings')
 	.post(borrowing.start)
-	.get(borrowing.getAll);
+	.get(borrowing.getAll);	
 
+router.route('/borrowings/:id')
+	.put(borrowing.end)
+	.get(borrowing.getDeviceHistory);
 
 //Register our routes
 app.use('/API', router);
@@ -72,4 +74,4 @@ app.use('/API', router);
 //START THE SERVER
 //==========================================================
 app.listen(port);
-console.log('listen on port: ', port);
+console.log('port: ', port);

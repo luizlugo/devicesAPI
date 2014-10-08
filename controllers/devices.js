@@ -1,6 +1,5 @@
 //device model
 var Device = require('../models/device');
-var borrowings = require('../controllers/borrowings');
 
 var devicesController = {
 	add : function(req, res){
@@ -10,6 +9,7 @@ var devicesController = {
 			device.name = req.body.name;
 			device.description = req.body.description;
 			device.identifinder = req.body.identifinder;
+			device.imageName = req.body.imageName;
 
 			device.save(function(err){
 				if (err){
@@ -19,20 +19,36 @@ var devicesController = {
 			});
 	},
 	getAll : function(req, res){
-				Device.find(function(err, devices){
-					if (err){
-						res.send(err);
-					}
-					res.json(devices);
-				});
+				Device.find()
+				  .populate({ path: 'borrowing' })
+				  .exec(function(err, devices) {
+
+				    var options = {
+				      path: 'borrowing.user',
+				      model: 'User'
+				    };
+
+				    if (err) return res.json(500);
+				    Device.populate(devices, options, function (err, devices) {
+				      res.json(devices);
+				    });
+				  });
 	},
 	findById : function(req, res){
-				Device.findById(req.params.id, function(err, device){
-					if (err){
-						res.send(err);
-					}
-					res.json(device);
-				});
+				Device.find({_id: req.params.id})
+				  .populate({ path: 'borrowing' })
+				  .exec(function(err, devices) {
+
+				    var options = {
+				      path: 'borrowing.user',
+				      model: 'User'
+				    };
+
+				    if (err) return res.json(500);
+				    Device.populate(devices, options, function (err, devices) {
+				      res.json(devices);
+				    });
+				  });
 	},
 	update : function(req, res){
 				Device.findById(req.params.id, function(err, device){
@@ -44,6 +60,7 @@ var devicesController = {
 					device.name = req.body.name;
 					device.description = req.body.description;
 					device.identifinder = req.body.identifinder;
+					device.imageName = req.body.imageName;
 
 					device.save(function(err){
 						if (err){
